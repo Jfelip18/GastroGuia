@@ -1,4 +1,6 @@
 <?php
+require_once '../config.php';
+
 // Habilitar todos los errores para depuración
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -31,22 +33,15 @@ error_log("Método HTTP: " . $_SERVER['REQUEST_METHOD']);
 $raw_data = file_get_contents('php://input');
 error_log("Datos raw recibidos: " . $raw_data);
 
-// Configuración de la base de datos
-$host = 'ep-falling-darkness-at0f4soa-pooler.c-9.us-east-1.aws.neon.tech';
-$dbname = 'neondb';
-$user = 'neondb_owner';
-$pass = 'npg_9PJdQBL0jvgS';
-$port = '5432';
+$pdo = getDBConnection();
 
-$pdo = null;
+if (!$pdo) {
+    http_response_code(500);
+    echo json_encode(['success' => false, 'error' => 'Error de conexión a la base de datos']);
+    exit;
+}
 
 try {
-    $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;sslmode=require";
-    $pdo = new PDO($dsn, $user, $pass);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-    $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-    
     // Decodificar JSON
     $data = json_decode($raw_data, true);
     if (json_last_error() !== JSON_ERROR_NONE) {
