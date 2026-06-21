@@ -32,10 +32,10 @@ $raw_data = file_get_contents('php://input');
 error_log("Datos raw recibidos: " . $raw_data);
 
 // Configuración de la base de datos
-$host = 'ep-bitter-pond-adc167pq-pooler.c-2.us-east-1.aws.neon.tech';
+$host = 'ep-falling-darkness-at0f4soa-pooler.c-9.us-east-1.aws.neon.tech';
 $dbname = 'neondb';
 $user = 'neondb_owner';
-$pass = 'npg_3xo2bVKjNDei';
+$pass = 'npg_9PJdQBL0jvgS';
 $port = '5432';
 
 $pdo = null;

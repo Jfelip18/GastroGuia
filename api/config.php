@@ -5,10 +5,10 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // Configuración de la base de datos
-define('DB_HOST', 'ep-bitter-pond-adc167pq-pooler.c-2.us-east-1.aws.neon.tech');
+define('DB_HOST', 'ep-falling-darkness-at0f4soa-pooler.c-9.us-east-1.aws.neon.tech');
 define('DB_NAME', 'neondb');
 define('DB_USER', 'neondb_owner');
-define('DB_PASS', 'npg_3xo2bVKjNDei');
+define('DB_PASS', 'npg_9PJdQBL0jvgS');
 define('DB_PORT', '5432');
 
 // Función para obtener conexión PDO
